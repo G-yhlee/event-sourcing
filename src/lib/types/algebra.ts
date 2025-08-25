@@ -65,3 +65,89 @@ export interface Exercise {
   solution: string;
   difficulty: 1 | 2 | 3 | 4 | 5;
 }
+
+// 강의노트 atoms 타입 정의
+export type LectureAtom = 
+  | DefinitionAtom
+  | TheoremAtom
+  | MathDefinitionAtom
+  | ProgDefinitionAtom  
+  | CodeExampleAtom
+  | SummaryAtom
+  | ImportantAtom;
+
+export interface MathDefinitionAtom {
+  type: 'math-definition';
+  id: string;
+  title: string;
+  content: string;
+  formula?: string;
+}
+
+export interface ProgDefinitionAtom {
+  type: 'prog-definition';
+  id: string;
+  title: string;
+  content: string;
+  interface?: string;
+}
+
+export interface CodeExampleAtom {
+  type: 'code-example';
+  id: string;
+  title: string;
+  code: string;
+  language: string;
+  output?: string;
+}
+
+
+export interface SummaryAtom {
+  type: 'summary';
+  id: string;
+  title: string;
+  points: string[];
+  bgColor?: string;
+}
+
+export interface DefinitionAtom {
+  type: 'definition';
+  id: string;
+  title: string;
+  content: {
+    undergraduate: string;
+    graduate: string;
+  };
+  formula: {
+    undergraduate: string;
+    graduate: string;
+  };
+  conditions: {
+    undergraduate: string[];
+    graduate: string[];
+  };
+}
+
+export interface TheoremAtom {
+  type: 'theorem';
+  id: string;
+  title: string;
+  statement: {
+    undergraduate: string;
+    graduate: string;
+  };
+  proof?: {
+    undergraduate: string;
+    graduate: string;
+  };
+  corollary?: {
+    undergraduate: string;
+    graduate: string;
+  };
+}
+
+export interface ImportantAtom {
+  type: 'important';
+  id: string;
+  content: string;
+}

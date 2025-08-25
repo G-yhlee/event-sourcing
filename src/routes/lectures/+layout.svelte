@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { chapters } from '$lib/data/chapters';
+  import MathLevelToggle from '$lib/components/common/MathLevelToggle.svelte';
   import '../../app.css';
   
   let { children } = $props();
@@ -12,10 +13,15 @@
   <!-- 헤더 (고정) -->
   <header class="bg-white border-b border-gray-200 shadow-sm flex-shrink-0">
     <div class="max-w-7xl mx-auto px-4 py-4">
-      <h1 class="text-3xl font-bold text-gray-900 font-serif">
-        대수적 구조 강의노트
-      </h1>
-      <p class="text-gray-600 mt-1">with TypeScript</p>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 font-serif">
+            대수적 구조 강의노트
+          </h1>
+          <p class="text-gray-600 mt-1">with TypeScript</p>
+        </div>
+        <MathLevelToggle />
+      </div>
     </div>
   </header>
 
@@ -37,13 +43,6 @@
                     <span class="text-gray-900 font-medium text-sm">{chapter.title}</span>
                   </div>
                   <div class="text-xs text-gray-600 mt-1">{chapter.subtitle}</div>
-                  <div class="flex flex-wrap gap-1 mt-2">
-                    {#each chapter.topics as topic}
-                      <span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded">
-                        {topic}
-                      </span>
-                    {/each}
-                  </div>
                 </a>
               </li>
             {/each}
